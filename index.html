@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <script src="https://cdn.rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/clementlamoureux/JSONPath/master/lib/jsonpath.js"></script>
+    <link rel="import" href="https://rawgit.com/Download/polymer-cdn/1.8.0/lib/iron-ajax/iron-ajax.html">
+</head>
+
+<body>
+
+    <!-- Define the component -->
+    <dom-module id="json-data">
+        <template>
+            <iron-ajax auto url=[[url]] handle-as="json" last-response="{{ajaxResponse}}"></iron-ajax>
+            <div>[[_getSelectedData(ajaxResponse, path)]]</div>
+        </template>
+        <script>
+            window.addEventListener('WebComponentsReady', function () {
+                Polymer({
+                    is: 'json-data',
+                    properties: {
+                        url: String,
+                        path: String
+                    },
+                    _getSelectedData: function (data, path) {
+                        console.log(jsonPath.eval(data, path));
+                        return jsonPath.eval(data, path);
+                    }
+                });
+            })
+        </script>
+    </dom-module>
+
+    <!-- use the component
+    <json-data url="https://jsonplaceholder.typicode.com/posts/1" path="$.body"></json-data>-->
+
+</body>
+
+</html>
