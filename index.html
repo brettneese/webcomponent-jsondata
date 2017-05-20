@@ -12,19 +12,34 @@
     <dom-module id="json-data">
         <template>
             <iron-ajax auto url=[[url]] handle-as="json" last-response="{{ajaxResponse}}"></iron-ajax>
-            <span>[[_getSelectedData(ajaxResponse, path)]]</span>
+            <span>[[_getSelectedData(ajaxResponse, path, regex, replace)]]</span>
         </template>
         <script>
             window.addEventListener('WebComponentsReady', function () {
                 Polymer({
                     is: 'json-data',
                     properties: {
+                        regexMode: String,
+                        regex: String,
+                        replace: String,
                         url: String,
                         path: String
                     },
-                    _getSelectedData: function (data, path) {
-                        console.log(jsonPath.eval(data, path));
-                        return jsonPath.eval(data, path);
+                    _getSelectedData: function (data, path, regex, replace, mode) {
+                        var d = jsonPath.eval(data, path);
+
+                        // cast d to a string just to be on the safe side
+                        d = String(d);
+                        d = '111000151151101'
+                        if (regex && replace) {
+                            if (!regexMode) {
+                                var regexMode = 'g' //global replace by default
+                            };
+
+                            d = d.replace(new RegExp(regex, regexMode), replace);
+                        }
+
+                        return d;
                     }
                 });
             })
