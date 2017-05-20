@@ -12,7 +12,7 @@
     <dom-module id="json-data">
         <template>
             <iron-ajax auto url=[[url]] handle-as="json" last-response="{{ajaxResponse}}"></iron-ajax>
-            <div>[[_getSelectedData(ajaxResponse, path)]]</div>
+            <span>[[_getSelectedData(ajaxResponse, path)]]</span>
         </template>
         <script>
             window.addEventListener('WebComponentsReady', function () {
