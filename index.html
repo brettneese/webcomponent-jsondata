@@ -11,6 +11,11 @@
     <!-- Define the component -->
     <dom-module id="json-data">
         <template>
+            <style>
+                 :host {
+                    display: inline-block;
+                }
+            </style>
             <iron-ajax auto url=[[url]] handle-as="json" last-response="{{ajaxResponse}}"></iron-ajax>
             <span>[[_getSelectedData(ajaxResponse, path, regex, replace)]]</span>
         </template>
