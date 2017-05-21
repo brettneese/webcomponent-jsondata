@@ -9,7 +9,7 @@ I assume it only works on Chrome because that's the only place I tried it but th
 ## Attributes:
 
 - `url` (string, required) - a URL-encoded, stable, URL to get the JSON from. If you need query paramters, add them at the end.
-- `path` (string, required) - a JSON path to select the data in the object. For instance, `"$.items.0.statistics.viewCount"`
+- `path` (string, required) - a [JSONPath selector](http://goessner.net/articles/JsonPath/) to select the data in the object. For instance, `"$.items.0.statistics.viewCount"`
 - `regex` (string, optional) - a regex to use for finding data to replace. No leading or following slashes. For instance, `(\d)(?=(\d\d\d)+(?!\d))`  
 - `replace` (string, optional) - the pattern to replace the regex matches with. For instance, `$1,`
 - `regexMode` ('i', optional, default: 'g') - if you want the regex to only match the first instance set this to `'i'`
